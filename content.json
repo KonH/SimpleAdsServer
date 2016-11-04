@@ -1,0 +1,22 @@
+[
+	{
+		"type": "small",
+		"image": "img1",
+		"url": "url1"
+	},
+	{
+		"type": "small",
+		"image": "img2",
+		"url": "url2"
+	},
+	{
+		"type": "big",
+		"image": "img3",
+		"url": "url3"
+	},
+	{
+		"type": "big",
+		"image": "img4",
+		"url": "url4"
+	},
+]
