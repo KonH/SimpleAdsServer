@@ -10,18 +10,11 @@ getEntries(Path) ->
 % TODO: Catch exceptions
 parse(Data) ->
 	Decoded = jiffy:decode(Data),
-	Entries = makeEntries(Decoded),
-	Entries.
+	makeEntries(Decoded).
 
 convertItem(Item) ->
-	{Content} = Item,
-	[TypeTuple, ImgTuple, UrlTuple] = Content,
-	{_, Type} = TypeTuple,
-	{_, Img} = ImgTuple,
-	{_, Url} = UrlTuple,
+	{[{_, Type}, {_, Img}, {_, Url}]} = Item,
 	{{type, Type}, {image, Img}, {url, Url}}.
 
 makeEntries(List) -> 
-	Convert = fun(Item) -> convertItem(Item) end,
-	ConvList = lists:map(Convert, List),
-	ConvList.
+	[convertItem(Item) || Item <- List].
