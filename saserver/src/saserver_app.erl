@@ -8,11 +8,14 @@
 -behaviour(application).
 
 %% Application callbacks
--export([start/2, stop/1]).
+-export([start/0, start/2, stop/1]).
 
 %%====================================================================
 %% API
 %%====================================================================
+
+start() ->
+	saserver_sup:start().
 
 start(_StartType, _StartArgs) ->
     saserver_sup:start_link().
