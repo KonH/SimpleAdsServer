@@ -1,1 +1,1 @@
-erl -pa _build/default/lib/saserver/ebin
+erl -env ERL_LIBS _build/default/lib

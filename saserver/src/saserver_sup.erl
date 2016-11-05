@@ -20,7 +20,7 @@
 %%====================================================================
 
 start() ->
-	start:askBanner("big").
+	start:askBanner(<<"big">>).
 
 start_link() ->
     supervisor:start_link({local, ?SERVER}, ?MODULE, []).

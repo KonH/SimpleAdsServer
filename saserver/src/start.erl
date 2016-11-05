@@ -2,14 +2,14 @@
 -export([askBanner/1]).
 
 % TODO:
-% - Read and parse json file with links and image urls
+% + Read and parse json file with links and image urls
 % + Get random item from it
 % - Return json generated from it
 % - Web-service:
 % -- Local
 % -- Cloud (AWS/Heroku?)
-% JSON input: [{type, img, url}]
-% JSON output:{img, url}
+% JSON input: [{type, image, url}]
+% JSON output:{image, url}
 % Request: {userId, type}
 
 % Return ad info set (image, url)
@@ -19,17 +19,8 @@
 %		{url, "https://www.google.com/"}
 %	}.
 
-getEntries() ->
-	[
-		{{type,"small"}, {image, "img1"}, {url, "url1"}},
-		{{type,"small"}, {image, "img2"}, {url, "url2"}},
-		{{type,"small"}, {image, "img3"}, {url, "url3"}},
-		{{type,"big"},   {image, "img4"}, {url, "url4"}},
-		{{type,"big"},   {image, "img5"}, {url, "url5"}},
-		{{type,"big"},   {image, "img6"}, {url, "url6"}}
-	].
-
 askBanner(Type) ->
-	List = getEntries(),
+	Path = "/Users/konh/Projects/Erlang/SimpleAdsServer/content.json",
+	List = reader:getEntries(Path),
 	Entry = entry:rand(List, Type),
 	entry:apply(Entry).
