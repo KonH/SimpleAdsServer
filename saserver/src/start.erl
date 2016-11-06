@@ -21,6 +21,6 @@
 
 askBanner(Type) ->
 	Path = "/Users/konh/Projects/Erlang/SimpleAdsServer/content.json",
-	List = reader:getEntries(Path),
-	Entry = entry:rand(List, Type),
-	entry:apply(Entry).
+	List = reader:getBanners(Path),
+	Banner = banner:rand(List, Type),
+	banner:apply(Banner).

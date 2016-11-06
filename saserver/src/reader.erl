@@ -1,7 +1,8 @@
 -module(reader).
--export([getEntries/1]).
+-export([getBanners/1]).
+-include("dict.hrl").
 
-getEntries(Path) -> 
+getBanners(Path) -> 
 	case file:read_file(Path) of
 		{ok, Data} -> parse(Data);
 		{error, _} -> []
@@ -10,11 +11,12 @@ getEntries(Path) ->
 % TODO: Catch exceptions
 parse(Data) ->
 	Decoded = jiffy:decode(Data),
-	makeEntries(Decoded).
+	makeBanners(Decoded).
 
+% TODO: find funcs
 convertItem(Item) ->
 	{[{_, Type}, {_, Img}, {_, Url}]} = Item,
-	{{type, Type}, {image, Img}, {url, Url}}.
+	#banner{type = Type, image = Img, url = Url}.
 
-makeEntries(List) -> 
+makeBanners(List) -> 
 	[convertItem(Item) || Item <- List].

@@ -1,8 +1,13 @@
--module(entry).
+-module(banner).
 -export([filter/2, rand/1, rand/2, apply/1]).
+-include("dict.hrl").
+
+filterItem(Item, Type) -> 
+	ItemType = Item#banner.type, 
+	ItemType == Type.
 
 filter(List, Type) ->
-	Filter = fun(Entry) -> {{type, EntryType},_,_} = Entry, EntryType == Type end,
+	Filter = fun(Item) -> filterItem(Item, Type) end,
 	TypeList = lists:filter(Filter, List),
 	TypeList.
 
@@ -18,6 +23,6 @@ rand(List, Type) ->
 
 apply({}) ->
 	{};
-apply({_,{image,Img},{url,Url}}) ->
+apply(Item) when is_record(Item, banner) ->
+	#banner{image = Img, url = Url} = Item,
 	{Img, Url}.
-
