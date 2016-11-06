@@ -1,5 +1,5 @@
 -module(banner).
--export([filter/2, rand/1, rand/2, apply/1]).
+-export([filter/2, rand/1, rand/2]).
 -include("dict.hrl").
 
 filterItem(Item, Type) -> 
@@ -21,8 +21,3 @@ rand(List, Type) ->
 	TypeList = filter(List, Type),
 	rand(TypeList).
 
-apply({}) ->
-	{};
-apply(Item) when is_record(Item, banner) ->
-	#banner{image = Img, url = Url} = Item,
-	{Img, Url}.

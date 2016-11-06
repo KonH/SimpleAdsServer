@@ -4,7 +4,7 @@
 % TODO:
 % + Read and parse json file with links and image urls
 % + Get random item from it
-% - Return json generated from it
+% + Return json generated from it
 % - Web-service:
 % -- Local
 % -- Cloud (AWS/Heroku?)
@@ -23,4 +23,4 @@ askBanner(Type) ->
 	Path = "/Users/konh/Projects/Erlang/SimpleAdsServer/content.json",
 	List = reader:getBanners(Path),
 	Banner = banner:rand(List, Type),
-	banner:apply(Banner).
+	writer:apply(Banner).
