@@ -8,9 +8,11 @@ getBanners(Path) ->
 		{error, _} -> []
 	end.
 
-% TODO: Catch exceptions
 parse(Data) ->
-	Decoded = jiffy:decode(Data),
+	Decoded = try jiffy:decode(Data)
+		catch 
+				_:_ -> []
+		end,
 	makeBanners(Decoded).
 
 % TODO: find funcs
